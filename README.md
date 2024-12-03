@@ -1,19 +1,19 @@
 # Flet
 All Projects of flet Library with Python Language | By :> Mohammed Alaa Mohammed -- You Can Use This as apk of Your Device....
 
-### Setup |
+### Setup  Library|
 ```python
 pip install flet
 ```
-#$## Check of Versoin |
+#### Check of Versoin |
 ```
 flet --version
 ```
-### Run App as .Exe or .Py |
+#### Run App as .Exe or .Py |
 ```
 flet run [script].py
 ```
-### Run App as Web and .Py |
+#### Run App as Web and .Py |
 ```
 flet run --web [script].py
 ```
