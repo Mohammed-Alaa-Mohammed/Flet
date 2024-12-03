@@ -1,2 +1,7 @@
 # Flet
 All Projects of flet Library with Python Language | By :> Mohammed Alaa Mohammed -- You Can Use This as apk of Your Device....
+
+# Setup |
+```python
+pip install flet
+```
