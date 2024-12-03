@@ -5,7 +5,7 @@ All Projects of flet Library with Python Language | By :> Mohammed Alaa Mohammed
 ```python
 pip install flet
 ```
-#### Check of Versoin |
+#### Check of Version |
 ```
 flet --version
 ```
