@@ -1,0 +1,59 @@
+from flet import *
+import webbrowser
+# === SET ALL FUNCTIONS OF HERE TO ALL TOOLS IN THIS APP ===
+def DELA () :
+    webbrowser.open("https://gallery.flet.dev/icons-browser/")
+# ==== SET Screen Fun to Set Tools in APP ====
+
+def main (home:Page) :
+#
+    home.title = 'Dircode | V.2 | dev :: Mohammed Alaa Mohammed' # عنوان التطبيق
+    home.window.width = '450' # التحكم في عرض النافذة
+    home.window.height = '815' # التحكم في طول النافذة من الطول
+    # home.bgcolor = colors.AMBER_ACCENT_100 # مكتبة موجودة تلقائي
+    # home.bgcolor = '#21222e' # تعيين لون خاص
+    home.window.top = 1 # التحكم في النافذة من الاعلي
+    home.window.left = 1080 # التحكم في النافذة من اليسار
+    # home.window.resizable = False # لعدم تكبير النافذة او التحكم فيها من حيث الحجم
+    # home.window.title_bar_hidden = True # لإخفاء الشريط العلوي من التطبيق
+    home.horizontal_alignment = "center" # توسيط العناصر من الأعلي و الأسفل الي منتصف الصفحة
+    home.vertical_alignment = "center" # توسيط العناصر من اليسار و اليمين الي منتصف الصفحة
+    # rtl => لتحريك ونقل النص العربي من اليسار الي اليمين مع اعطاء قيمة العرض له
+    home.theme_mode = ThemeMode.DARK
+    home.scroll = ScrollMode.AUTO
+# ==== End of SET Screen Fun to Set Tools in APP ====
+
+    #/////////////////////////////////////////////////////////////
+
+ # === Set a Tools of APP ===
+    btn_1 = TextButton ("Find any One Student",icon=icons.PERSON_SEARCH_SHARP,icon_color='#3498db',on_click=DELA)
+    btn_2 = TextButton ("Search in DATABASE",icon=icons.FOLDER_OPEN,tooltip="Open DATABASE",icon_color='#ecf0f1')
+    btn_3 = TextButton ("Open DATABASE Now",icon=icons.OPEN_IN_NEW,tooltip="Check DATABASE",icon_color='#e74c3c')
+    super_btn = ElevatedButton (
+        "Loing To Home Page Start",
+        color = "#c7ecee",
+        bgcolor= "#30336b",
+        icon = icons.ADD_BOX,
+
+    )
+    icon = IconButton(
+        icon = icons.SEARCH,
+        icon_color = '#9980FA',
+        icon_size = 20,
+        tooltip = 'Search Button'
+
+    )
+
+
+
+    home.add(btn_1,
+            btn_2 ,
+             btn_3,
+            super_btn,
+            icon
+             ) # To add all tools in app
+    home.update() # Update All Tools to added..=> # Update All Elements of Set To View in Screen
+app(main) # Run as Apk
+# ft.app(target=main,view=ft.AppView.WEB_BROWSER) # Run as Website , === Set port if Found Error
+# ft.app(target=main,view=ft.AppView.WEB_BROWSER,port='') # Run as Website , === Set port if Found Error
+# ft.app(target=main) # Run as Windows
