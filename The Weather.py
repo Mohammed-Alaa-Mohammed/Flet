@@ -70,18 +70,36 @@ def get_weather_forecast(city: str, units: str):
         return None, f"حدث خطأ في الاتصال بالإنترنت أو في الـ API: {e}"
 
 
+
 def show_messagebox(page):
-    # إنشاء AlertDialog باستخدام طريقة Overlay
     alert = ft.AlertDialog(
-        title=ft.Text("V.3.1 BETA مرحبًا في تطبيق الطقس"),
-        content=ft.Text("!تم فتح التطبيق بنجاح.\n\nاستمتع بتجربة الطقس \n\n  قم بالضغط في مكان فارغ لاغلاق الرساله"),
-        actions=[ft.ElevatedButton("إغلاق", on_click=lambda e: close_alert(page, alert))]
-
+        modal=True,
+        title=ft.Row([
+            ft.Icon(ft.icons.WALLET_GIFTCARD_ROUNDED, color=ft.colors.AMBER, size=30),
+            ft.Text("مرحبًا في تطبيق الطقس V.3.1 BETA", weight=ft.FontWeight.BOLD, size=16)
+        ], alignment=ft.MainAxisAlignment.CENTER),
+        content=ft.Text(
+            "\n☀️ تم فتح التطبيق بنجاح!\n\n"
+            "🌦️ استمتع بتجربة الطقس بدقة عالية.\n\n"
+            "💡 اضغط على زر \"إغلاق\" لإغلاق الرسالة.",
+            text_align=ft.TextAlign.CENTER,
+            size=14,
+        ),
+        actions=[
+            ft.ElevatedButton(
+                "إغلاق",
+                on_click=lambda e: close_alert(page, alert)
+            )
+        ],
+        actions_alignment=ft.MainAxisAlignment.CENTER,
     )
-
-    # إضافة الـ AlertDialog إلى الـ Overlay
     page.overlay.append(alert)
-    alert.open = True  # فتح الـ Dialog
+    alert.open = True
+    page.update()
+
+    def close_alert(page, alert):
+        alert.open = False
+        page.update()
 
 
 # دالة لإغلاق الـ AlertDialog بشكل آمن
@@ -97,15 +115,16 @@ def main(page):
     # تعيين خصائص النافذة
     page.title = "تطبيق الطقس | Mohammed Alaa Mohammed > V.3.1 BETA"
     page.window.icon = (r"C:\Python\Flet GUI\map_icon.ico")  # رابط الأيقونة
-    page.bgcolor = "#f0f0f0"
-    page.window.top = 5
+    page.window.top = 35
     page.window.width = 500
     page.window.height = 800
+    page.window.height = 750
+    page.window.left = 500
     page.window.resizable = True
-    page.window.title_bar_hidden = True
+    page.window.title_bar_hidden = False
     page.scroll = 'auto'
     page.theme_mode = ft.ThemeMode.DARK
-    page.bgcolor = "#2f3640"  # تحديد اللون الخلفي الداكن
+    page.bgcolor = "#222f3e"  # تحديد اللون الخلفي الداكن
 
     # إدخال المدينة
     city_input = ft.TextField(label="أدخل اسم المدينة", autofocus=True)
@@ -115,7 +134,7 @@ def main(page):
         value="metric",
     )
     result_label = ft.Text(value=".....بيانات الــطــقــس تظــهــر هــنا")
-    weather_image = ft.Image(width=150, height=150)
+    # weather_image = ft.Image(width=150, height=150)
     additional_info_label = ft.Text(value="الرطوبة: --% | الرياح: -- m/s | الضغط الجوي: -- hPa")
     forecast_label = ft.Text(value=" : التنبؤات المستقبلية")
     rain_label = ft.Text(value="كمية الأمطار المتوقعة: -- mm")
@@ -131,14 +150,14 @@ def main(page):
 
         if main:
             result_label.value = f"الطقس في {city} هو {main} ({description}) ودرجة الحرارة {temperature}°"
-            weather_image.src = icon_url
+            # weather_image.src = icon_url
             additional_info_label.value = f"الرطوبة: {humidity}% | الرياح: {wind_speed} m/s | الضغط الجوي: {pressure} hPa"
             rain_label.value = f"كمية الأمطار المتوقعة: {rain} mm"
             forecast_label.value = f"التنبؤات المستقبلية: ..."
             alert_label.value = "حالة الطقس جيدة."
         else:
             result_label.value = description
-            weather_image.src = ""
+            # weather_image.src = ""
             additional_info_label.value = ""
             forecast_label.value = ""
             rain_label.value = ""
@@ -153,7 +172,7 @@ def main(page):
             time.sleep(10)  # تحديث كل 10 ثواني
 
     # زر التحديث التلقائي
-    auto_update_toggle = ft.Switch(label="التحديث التلقائي", value=False)
+    auto_update_toggle = ft.Switch(label="  التحديث التلقائي", value=False)
 
     # دالة عند التبديل بين التحديث التلقائي
     def on_auto_update_toggle(e):
@@ -171,8 +190,8 @@ def main(page):
         width=200,
         height=45,
         style=ft.ButtonStyle(
-            bgcolor='#535c68',  # لون الخلفية
-            color='#ddcc00',  # لون النص
+            bgcolor='#212230',  # لون الخلفية
+            color='#F2F3F1',  # لون النص
             shadow_color="#0fffff" ,
             shape=ft.RoundedRectangleBorder(radius=10),  # زوايا مستديرة
         ))
@@ -189,7 +208,7 @@ def main(page):
                 get_weather_button,
                 auto_update_toggle,
                 alert_label,
-                weather_image,
+                # weather_image,
                 result_label,
                 additional_info_label,
                 rain_label,
@@ -200,11 +219,10 @@ def main(page):
             spacing=20,
         )
     )
-
-
 # ft.app(target=main,view=ft.AppView.WEB_BROWSER)
 ft.app(target=main)
 
 
 # V.3.1 BETA
 # BY | Mohammed Alaa Mohammed
+# Last Update | 2025 - 1 - 30
